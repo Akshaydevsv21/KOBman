@@ -11,7 +11,7 @@ function kob_init {
   # echo $KOBMAN_ENV_NAME
   # echo $KOBMAN_NAMESPACE
   #TODO:- Check $kob command (e.g - $kob --version or $kob).
-  curl -L https://raw.githubusercontent.com/${KOBMAN_NAMESPACE}/KOBman/master/get.kobman.io | bash > /dev/null 2>&1
+  curl -L ${KOBMAN_SERVICE}/${KOBMAN_NAMESPACE}/KOBman/master/get.kobman.io | bash > /dev/null 2>&1
   source "${KOBMAN_DIR}/bin/kobman-init.sh"
   kob | grep -i "KOBman" >/dev/null
   if [ $? -eq 0 ];
@@ -36,9 +36,9 @@ function kob_execute {
 }
 
 function kob_verify {
-  cat output.txt
-   param= $(cat output.txt)
-  # echo $param
+  #cat output.txt
+   param=$(cat output.txt)
+  echo $param
    #TODO:- Call function __test_kobman_$(environment_under_name)_ validate_install( optional arguments) --> output file.
    __test_kobman_${KOBMAN_ENV_NAME}_validate_install "${param}" &> output.txt
    #TODO:- Check Output log file.
