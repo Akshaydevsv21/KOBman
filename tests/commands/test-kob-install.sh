@@ -11,6 +11,7 @@ function kob_init {
   # echo $KOBMAN_ENV_NAME
   # echo $KOBMAN_NAMESPACE
   #TODO:- Check $kob command (e.g - $kob --version or $kob).
+  # Remove curl command
   curl -L https://raw.githubusercontent.com/${KOBMAN_NAMESPACE}/KOBman/master/get.kobman.io | bash > /dev/null 2>&1
   source "${KOBMAN_DIR}/bin/kobman-init.sh"
   kob | grep -i "KOBman" >/dev/null
@@ -54,8 +55,11 @@ function kob_cleanup {
     #TODO:- Remove function __test_kobman_$(environment_under_name)_ validate_install().
 
 }
+# All the listed four should be wraped in a function called as test_install()
 
 kob_init "$1" "$2"
 kob_execute
 kob_verify
 kob_cleanup
+
+# test_install "$1" "$2"
